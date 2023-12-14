@@ -1,0 +1,8 @@
+<form class="form">
+    <label class="label">Email</label>
+    <input class="input" name="email"  [(ngModel)]="userInfo.email" type="text" id="email" placeholder="example@gmail.com">
+    <label class="label">Password</label>
+    <input class="input" name="password" [(ngModel)]="userInfo.password" type="password" id="password" placeholder="Enter your password">
+    <button (click)="signIn()" class="btn">Sign In</button>
+    <p>Don't have an account ? <a routerLink="/signup">Sign Up</a></p>
+</form>

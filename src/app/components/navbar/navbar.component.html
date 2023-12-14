@@ -1,0 +1,19 @@
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="" >Demo App</a>
+      <form class="d-flex" role="search">
+
+        @if (user) {
+            <button class="btn btn-outline-success mx-3" (click)="logout()" type="submit">Sign Out</button>
+        }@else {
+            <button class="btn btn-outline-success mx-3" (click)="navigateToSignIn()" type="submit">Sign in</button>
+
+        }
+
+        @if (user) {
+            <button class="btn btn-outline-success" (click)="navigateToDash()" type="submit">Dashboard</button>
+        }
+
+      </form>
+    </div>
+  </nav>

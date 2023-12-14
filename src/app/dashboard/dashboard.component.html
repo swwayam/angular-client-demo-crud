@@ -1,0 +1,45 @@
+<form class="form" #form="ngForm">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input type="text" #name="ngModel" minlength="3" name="name" pattern="^[a-zA-Z\s]+$" required
+            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ngModel>
+        @if (name.invalid) {
+        <div id="emailHelp" class="form-text">Enter a valid name.</div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Phone </label>
+        <input type="text" #mobile="ngModel" minlength="3" name="mobile" pattern="[0-9]{10}$" required
+            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ngModel>
+        @if (mobile.invalid) {
+        <div id="emailHelp" class="form-text">Enter a valid phone number.</div>
+
+        }
+    </div>
+
+
+    <button [disabled]="form.invalid" (click)="submitInfo(form); form.resetForm()" type="submit"
+        class="btn btn-primary ">Submit</button>
+    <button (click)="getInfo()" class="btn btn-danger mx-3">Get all users</button>
+</form>
+
+@if (findAll().length > 0) {
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Number</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for ( person of findAll(); track $index) {
+        <tr>
+            <td>{{person.name}}</td>
+            <td>{{person.mobile}}</td>
+            <td><button (click)="deleteUser(person.mobile)" class="btn btn-danger mx-3">Delete</button></td>
+        </tr>
+        }
+    </tbody>
+</table>
+}

@@ -1,0 +1,50 @@
+<form class="form" #form="ngForm" (ngSubmit)="getInfo(form.value); form.resetForm()">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Phone / Name</label>
+        <input type="email" #name="ngModel" minlength="3" name="data" pattern="^[a-z]*$|^[0-9]{10}$" required
+            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ngModel>
+        @if (name.invalid) {
+        <div id="emailHelp" class="form-text">Enter phone number / name to search for the employee</div>
+
+        }
+    </div>
+
+    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if (findNumber().name ) {
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{findNumber().name}}</td>
+            <td>{{findNumber().mobile}}</td>
+        </tr>
+
+    </tbody>
+</table>
+}
+
+@if (findName().length > 0) {
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for ( person of findName(); track $index) {
+                <tr>
+                    <td>{{person.name}}</td>
+                    <td>{{person.mobile}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
